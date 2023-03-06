@@ -1,0 +1,71 @@
+<div class="d-flex flex-column p-1 align-items-center me-2" style="width: fit-content; height: inherit;">
+    <div class="dropdown-hover" @onmouseover="UpdateDropdown">
+    <h2 class="green-color fw-bold fs-3 p-2 p-container">@AppState.Rotor_Config[Position]</h2>
+    <div class="dropdown-body">
+        <h2 class="@rotorProps[0]" @onclick="() => SetRotor(1)">1</h2>
+        <h2 class="@rotorProps[1]" @onclick="() => SetRotor(2)">2</h2>
+        <h2 class="@rotorProps[2]" @onclick="() => SetRotor(3)">3</h2>
+        <h2 class="@rotorProps[3]" @onclick="() => SetRotor(4)">4</h2>
+        <h2 class="@rotorProps[4]" @onclick="() => SetRotor(5)">5</h2>
+    </div>
+    </div>
+    <button @onclick="() => btnIncrease()" class="btn btn-encrypt"><img src="/Sources/Images/caret-up-fill.svg" class="img-size"/></button>
+    <p class="fw-bold bg-white p-2 fs-5 mb-2 text-center " style="width: 39px">@FormatSettings(Index)</p>
+    <p class="fw-bold p-2 fs-5 mb-2 text-center" style="width: 39px;background-color: yellow">@FormatSettings(Index+1)</p>
+    <p class="fw-bold bg-white p-2 fs-5 mb-2 text-center" style="width: 39px">@FormatSettings(Index+2)</p>
+    <button @onclick="() => btnDecrease()" class="btn btn-encrypt"><img src="/Sources/Images/caret-down-fill.svg" class="img-size" /></button>
+</div>
+
+@code
+{
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; }
+    [Parameter]
+    public int Index { get; set; }
+    [Parameter]
+    public int Position { get; set; }
+    [Parameter]
+    public EventCallback<int> IndexChanged { get; set; }
+    private const string rotorText = "fw-bold fs-3 p-2 p-container";
+    private string[] rotorProps;
+    protected override void OnInitialized()
+    {
+        rotorProps = new string[5];
+        for (int i = 0; i < 5; i++)
+        {
+            rotorProps[i] = rotorText;
+        }
+        UpdateDropdown();
+    }
+    private Task btnIncrease()
+    {
+        Index = (Index + 1) % 26;
+        return IndexChanged.InvokeAsync(Index);
+    }
+    private Task btnDecrease()
+    {
+        Index = (Index - 1);
+        if (Index < 0) Index += 26;
+        return IndexChanged.InvokeAsync(Index);
+    }
+    private void SetRotor(int index)
+    {
+        AppState.Rotor_Config[Position] = index;
+        UpdateDropdown();
+    }
+    private int FormatSettings(int index)
+    {
+        if (index == 0 || index == 26) return 26;
+        return index % 26;
+    }
+    private void UpdateDropdown()
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if(j+1 == AppState.Rotor_Config[Position]) rotorProps[j] = $"{rotorText} green-color pe-none";
+            else if(AppState.Rotor_Config.Contains(j+1)) rotorProps[j] = $"{rotorText} red-color pe-none";
+            else rotorProps[j] = rotorText;
+        }
+    }
+}
+

@@ -1,18 +1,138 @@
-﻿@page "/counter"
+﻿@page "/Encryption"
+@layout EncDecLayout
+
 
 <PageTitle>Encryption</PageTitle>
+    <div class="container-fluid p-5">
+            <div class="row">
+                <div class="col-4 align-items-center d-flex flex-column">
+                    <label class="text-white fw-bold fs-4">Original Text:</label><br/>
+                    <textarea @bind="original" class="form-control fs-6 fw-bold" style="width: 85%; height: 85%; background-color: rgb(217, 217, 217); resize: none;"></textarea>
+                </div>
+                <div class="col-4 align-items-center d-flex flex-column justify-content-center">
+                    <p class="text-white fw-bold fs-4">Rotor Settings:</p><br/>
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <RotorElement @bind-Index="rotor_positions[0]" Position="0"></RotorElement>
+                        <RotorElement @bind-Index="rotor_positions[1]" Position="1"></RotorElement>
+                        <RotorElement @bind-Index="rotor_positions[2]" Position="2"></RotorElement>
+                    </div>
+                </div>
+                <div class="col-4 align-items-center d-flex flex-column">
+                    <label class="text-white fw-bold fs-4">Encrypted Text:</label><br/>
+                    <textarea readonly class="form-control fs-6 fw-bold" style="width: 85%; height: 85%; background-color: rgb(217, 217, 217); resize: none;">@encrypted</textarea>
+                </div>
+            </div>
 
-<h1>Counter</h1>
+            <div class="row">
+                <div class="col-8 d-flex flex-column justify-content-center">
+                    <h1 class="text-white fw-bold fs-4 mt-5">Plugboard settings:</h1>
+                    <div class="row d-flex justify-content-between mt-4">
+                        <a @onclick="() => Connect('A')" class="@classes[0]">A</a>
+                        <a @onclick="() => Connect('B')" class="@classes[1]">B</a>
+                        <a @onclick="() => Connect('C')" class="@classes[2]">C</a>
+                        <a @onclick="() => Connect('D')" class="@classes[3]">D</a>
+                        <a @onclick="() => Connect('E')" class="@classes[4]">E</a>
+                        <a @onclick="() => Connect('F')" class="@classes[5]">F</a>
+                        <a @onclick="() => Connect('G')" class="@classes[6]">G</a>
+                        <a @onclick="() => Connect('H')" class="@classes[7]">H</a>
+                        <a @onclick="() => Connect('I')" class="@classes[8]">I</a>
+                    </div>
 
-<p role="status">Current count: @currentCount</p>
+                    <div class="row d-flex justify-content-between mt-3">
+                        <a @onclick="() => Connect('J')" class="@classes[9]">J</a>
+                        <a @onclick="() => Connect('K')" class="@classes[10]">K</a>
+                        <a @onclick="() => Connect('L')" class="@classes[11]">L</a>
+                        <a @onclick="() => Connect('M')" class="@classes[12]">M</a>
+                        <a @onclick="() => Connect('N')" class="@classes[13]">N</a>
+                        <a @onclick="() => Connect('O')" class="@classes[14]">O</a>
+                        <a @onclick="() => Connect('P')" class="@classes[15]">P</a>
+                        <a @onclick="() => Connect('Q')" class="@classes[16]">Q</a>
+                        <a @onclick="() => Connect('R')" class="@classes[17]">R</a>
+                    </div>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+                    <div class="row d-flex justify-content-between mt-3 ms-5" style="width: 90%">
+                        <a @onclick="() => Connect('S')" class="@classes[18]">S</a>
+                        <a @onclick="() => Connect('T')" class="@classes[19]">T</a>
+                        <a @onclick="() => Connect('U')" class="@classes[20]">U</a>
+                        <a @onclick="() => Connect('V')" class="@classes[21]">V</a>
+                        <a @onclick="() => Connect('W')" class="@classes[22]">W</a>
+                        <a @onclick="() => Connect('X')" class="@classes[23]">X</a>
+                        <a @onclick="() => Connect('Y')" class="@classes[24]">Y</a>
+                        <a @onclick="() => Connect('Z')" class="@classes[25]">Z</a>
+                    </div>
+                </div>
+                <div class="col-4 d-flex flex-column justify-content-end align-items-end">
+                    <h2 class="text-white fw-bold fs-4 mb-3">Number of plug pairs: <a class="fs-4 p-2 p-container text-decoration-none" style="@checker">@(count/2)</a></h2>
+                    <button @onclick="ClearSettings" class="btn btn-encrypt fs-3 mb-3" style="width: 75%">Reset settings</button>
+                    <button @onclick="Execute" class="btn btn-encrypt p-0 d-flex justify-content-center align-items-center fs-1" style="width: 90%; height: 40%">Encrypt</button>
+                </div>
+            </div>
+    </div>
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    [CascadingParameter]
+    public CascadingAppState AppState { get; set; }
+    private string original, encrypted;
+    private int[] rotor_positions;
+    private List<string> plugs;
+    private string[] classes;
+    private string temp, checker;
+    private int count;
+    private void Connect(char symbol)
     {
-        currentCount++;
+        classes[(int)(symbol-'A')] += $" plug-conn-{count/2} plug-disable";
+        count++;
+        temp += symbol;
+        if(count%2==0)
+        {
+            plugs.Add($"{temp[0]}-{temp[1]}");
+            temp="";
+        }
+        if(count==10)
+        {
+            for (int i = 0; i < classes.Length; i++)
+            {
+                classes[i]+=" plug-disable";
+            }
+            checker = "background-color: crimson";
+        }
+    }
+    protected override void OnInitialized()
+    {
+        rotor_positions = new int[3] {1, 1, 1};
+        AppState.Rotor_Config = new int[3] {1, 2, 3};
+        original="";
+        encrypted="";
+        plugs = new List<string>();
+        temp="";
+        checker="";
+        count=0;
+        classes = new string[26];
+        for (int i = 0; i < classes.Length; i++)
+        {
+            classes[i] = "plug";
+        }
+        AppState.PageLink = "Decryption";
+        AppState.ButtonState = "Decryption algorithm";
+    }
+    private void ClearSettings()
+    {
+        rotor_positions = new int[3] {1, 1, 1};
+        AppState.Rotor_Config = new int[3] {1, 2, 3};
+        plugs.Clear();
+        checker="";
+        count=0;
+        classes = classes.Select(x => x="plug").ToArray();
+    }
+    private void Execute()
+    {
+        encrypted="";
+        Enigma a = new Enigma(AppState.Rotor_Config, rotor_positions, plugs);
+        foreach (char sym in original)
+        {
+            if(sym>='a' && sym<='z') encrypted+=char.ToLower(a.Encrypt(char.ToUpper(sym)));
+            else if(sym>='A' && sym<='Z') encrypted+=a.Encrypt(sym);
+            else encrypted+=sym;
+        }
     }
 }
