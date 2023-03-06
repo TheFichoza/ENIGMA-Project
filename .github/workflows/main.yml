@@ -21,7 +21,7 @@ jobs:
     
     #Installs wasm-tools
     - name: Install wasm-tools
-      run: dotnet workload install wasm-tools --global
+      run: dotnet workload install wasm-tools
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
