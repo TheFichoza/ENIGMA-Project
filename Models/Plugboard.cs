@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-namespace TEST
+namespace PublishDemo
 {
  internal class Plugboard
     {

@@ -1,4 +1,4 @@
-namespace TEST
+namespace PublishDemo
 {
     static internal class RotorSelection
     {
