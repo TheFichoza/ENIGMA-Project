@@ -1,0 +1,46 @@
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    private string buttonState, pageLink;
+    private int[] rotor_config;
+    public string ButtonState
+    {
+        get
+        {
+            return buttonState;
+        }
+        set
+        {
+            buttonState = value;
+            StateHasChanged();
+        }
+    }
+    public string PageLink
+    {
+        get
+        {
+            return pageLink;
+        }
+        set
+        {
+            pageLink = value;
+            StateHasChanged();
+        }
+    }
+    public int[] Rotor_Config
+    {
+        get
+        {
+            return rotor_config;
+        }
+        set
+        {
+            rotor_config=value;
+            StateHasChanged();
+        }
+    }
+}

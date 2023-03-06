@@ -1,16 +1,25 @@
 ﻿@inherits LayoutComponentBase
 
+    <header class="navbar-color">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow" style="height: 50%;">
+            <div class="container p-3 d-flex justify-content-between mt-2">
+                <a href="/" class="navbar-brand green-color fs-2 fw-bold hoverer"><img src="Sources/Images/icon.png" class="mb-1" style="height: 81px; width: 75px"/>&nbsp ENIGMA Project</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex fs-3">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <li class="nav-item mr-3">
+                            <a href="Instructions" class="nav-link green-color hoverer text-nowrap">Operation of the ENIGMA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="History" class="nav-link green-color hoverer text-nowrap">Historical context</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+        <article class="content p-0">
             @Body
         </article>
     </main>
