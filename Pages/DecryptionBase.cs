@@ -32,7 +32,7 @@ namespace PublishDemo.Pages
                 else if (sym > 64 && sym < 91) format += sym;
             }
             
-            for(int rotorConfigs=0;rotorConfigs<5;rotorConfigs++)
+            for(int rotorConfigs=0;rotorConfigs<60;rotorConfigs++)
             {
                 int[] rotor_config = { vars[rotorConfigs, 0], vars[rotorConfigs, 1], vars[rotorConfigs, 2] };
                 enigma = new Enigma(rotor_config);
