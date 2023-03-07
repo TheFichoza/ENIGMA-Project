@@ -1,0 +1,45 @@
+@page "/Instructions"
+@layout EmptyLayout
+
+<div class="page-bg pt-3 pb-3 ps-4 pe-4">
+     <h1 class="mb-4 mt-3">Operation of the ENIGMA</h1>
+     <h2 class="mb-2 text-warning">Encoding and Decoding</h2>
+     <div class="mb-4 d-flex justify-content-center align-items-center" style="height: min-content;">
+          <p class="col-6 fs-3 pe-3">
+               The machine encrypts elements according to its components' configuration. 
+               The main components are the Rotors, Reflector and Plugboard with the input traversing through them in the shown order. 
+               Every set of settings produces a unique ciphertext. 
+               To encrypt a text, enter it in the <a class="green-color">textbox on the left</a>, 
+               choose your rotor and plugboard settings and click <a class="green-color">“Encrypt”</a>. 
+               Your ciphertext will appear on the other side. Entering the encrypted string with the same settings outputs the original text.
+          </p>
+          <img src="Sources/Images/Cipher.jpg" class="col-6 border border-dark border-3" style="max-width: 40%;"/>
+     </div>
+     <h2 class="mb-2 p-space text-warning">Rotors</h2>
+     <div class="mb-2 text-center">
+     <p class="col-11 fs-3 ms-auto me-auto">
+          The main encoding element of the machine. Every rotor swaps letters in accordance with its wiring. 
+          There are 5 different rotors, with exactly 3 inside the machine at any given time. 
+          Each rotor was originally a gear with 26 sides i.e. 26 starting positions. Every different combination of rotors and starting positions 
+          produces a unique cipher. To switch out the used rotors, click the <a class="green-color">numbers on top</a>.  
+          Meanwhile the positions are set with the <a class="green-color">arrows</a>. </p>
+     </div>
+     <div class="d-flex justify-content-between col-8 me-auto ms-auto mb-4">
+     <img src="Sources/Images/Rotors.jpg" class="col-4 border border-dark border-3"/>
+     <img src="Sources/Images/ImpRotors.jpg" class="col-4 border border-light border-3"/>
+     </div>
+     <h2 class="mb-2 p-space text-warning">Plugboard</h2>
+     <div class="mb-4 d-flex justify-content-center align-items-center">
+     <img src="Sources/Images/Plugboard.jpg" class="col-6 border border-light border-3 me-4" style="max-width: 40%;"/>
+     <p class="col-6 fs-3">
+          The plugboard is used for pairing any two letters, with any entered or output letter being replaced by its pair
+          (for example: A-Y is a pair. A is replaced by Y and Y - by A).
+          This replacement happens either right before or after the encryption by the rotors. A letter can at most be used in one pair.
+          To create a pair, <a class="green-color">click any two free letters</a> from the set of letters at the bottom. 
+          The <a class="green-color">plug count</a> shows the number of pairs. There can be a maximum of 5 pairs.
+          Clicking <a class="green-color">“Reset settings”</a> resets all settings.</p>
+     </div>
+     <div class="d-flex justify-content-center p-space">
+     <img src="Sources/Images/ImpPlugboard.jpg" class="border border-light border-3 col-11 mb-5"/>
+     </div>
+</div>

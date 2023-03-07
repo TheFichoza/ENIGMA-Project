@@ -1,0 +1,41 @@
+@page "/Methods"
+@layout EmptyLayout
+
+<div class="page-bg pt-3 pb-3 ps-4 pe-4 d-flex flex-column align-items-center">
+    <h1 class="mb-4 mt-3">Decryption methods</h1>
+    <p class="text-center col-11 fs-3">The decyption uses a <a class="green-color">"Brute force attack”</a> i.e. it checks every possible configuration to find which one is closest to typical English text.
+         The algorithm determines the correct rotor settings before moving on to the plugboard. A bombe-style decryption is impossible,
+          as there is no information about the original plaintext. As such, the algorithm has to use a <a class="green-color">“Fitness function”</a> to numerically express
+           the likelihood for a string to be English text. Two different fitness functions will be implemented in the project</p>
+
+    <h2 class="mb-2 text-warning p-space">Frequency analysis</h2>
+    <p class="fs-3 col-11 text-center">
+        This method statistically analyses the resulting text from different configurations to determine how close each one is to typical English text. 
+        The technique abuses a quirk in the ENIGMA code where frequency of the different letters in the ciphertext is relatively even. 
+        However, in typical English certain letters are more common than others. 
+        This discepency can be measured with the Index of Coincidence i.e. how likely is it for two randomly chosen letters to be the same. 
+        The typical value is 0,067 for normal Englsih and 0,030 for ciphertext. 
+        By calculating the IoC fpr every configuration and finding the closest value to 0,067, we can discover the output closest to plaintext.</p>
+    <p class="fs-3 text-center" style="color: rgb(136, 15, 39) !important;">While this method is accurate, it cannot handle short strings or non-typical structures</p>
+    <div class="d-flex justify-content-between col-11">
+        <div class="col-5">
+        <h3 class="text-center">A typical ENIGMA letter distribution</h3>
+        <img src="Sources/Images/CipherGraph.png" class="border border-2 border-dark" style="max-width: 100%"/>
+        </div>
+        <div class="col-5">
+        <h3 class="text-center">English language letter distribution</h3>
+        <img src="Sources/Images/EnglishGraph.jpg" class="border border-2 border-dark" style="max-width: 100%"/>
+        </div>
+    </div>
+    <div class="col-12 plug-conn-0 mb-4 p-space">
+    <h1>Extra method "Language Recognition" is yet to be introduced"</h1>
+    </div>
+    <h2 class="mt-3 text-warning mb-2">Instructions</h2>
+    <p class="fs-3 col-11 text-center mb-5">
+        First, enter your ciphertext in the <a class="green-color">“Original text”</a> textbox. 
+        Then select your preferred <a class="green-color">decryption method</a> and click <a class="green-color">“Start algorithm”</a>. 
+        After the specified time, the algorithm will output the best configuration and the resulting text. 
+        <a class="green-color">Make sure the text fulfills all the specified data requirements</a>. 
+        Otherwise the algorithm is way likelier to fail.
+    </p>
+</div>

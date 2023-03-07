@@ -1,0 +1,67 @@
+@page "/Decryption"
+@layout EncDecLayout
+@inherits DecryptionBase
+
+<PageTitle>Decryption</PageTitle>
+<div class="abs">
+    <div class="decryption-sidebar d-flex flex-column p-3 bg-opacity-10 fs-4">
+        <p class="fs-1">Decryption method</p>
+        <button @onclick="ChangeMethod" class="btn btn-encrypt ms-auto me-auto p-1 fs-3" style="width: 75%">@decryptionOptions[0]<img src="Sources/Images/caret-right-fill.svg" style="width: 10%"/></button>
+        <p>@decryptionOptions[1]</p>
+        <p>Needed time: @decryptionOptions[2] minutes</p>
+        <p>Text length: @decryptionOptions[3]</p>
+        <button @onclick="HandleDecrypt" class="btn btn-encrypt p-3 ms-auto me-auto fs-1 @working" style="width:90%; height: 15%;">Start Algorithm</button>
+        <p>For more information, see <a href="Methods" class="green-color hoverer">Decryption methods</a></p>
+    </div>
+    <div class="sidebar-align d-flex flex-column align-items-center mt-3">
+        <label class="p-size-1 text-white fw-bold mb-3">Ciphertext</label>
+        <textarea @bind="cipherText" class="form-control fs-4 fw-bold mb-3" style="width: 85%; height: 35%; background-color: rgb(217, 217, 217); resize: none;"></textarea>
+        <label class=" p-size-1 text-white fw-bold mb-3">Decrypted text</label>
+        <textarea class="form-control fs-4 fw-bold" readonly style="width: 85%; height: 35%; background-color: rgb(217, 217, 217); resize: none;">@plainText</textarea>
+    </div>
+</div>
+
+@code
+{
+    [CascadingParameter]
+    private CascadingAppState AppState { get; set; }
+
+    private string cipherText, plainText, working;
+    private string[] decryptionOptions;
+    protected override void OnInitialized()
+    {
+        cipherText = "";
+        plainText = "";
+        decryptionOptions = new string[4] { "Frequency Analysis",
+            "This algorithm uses a series of statistical methods to determine which configuration is closest to typical English text.",
+            "5-6", "At least 600 letters" };
+        AppState.PageLink = "Encryption";
+        AppState.ButtonState = "ENIGMA device";
+    }
+    private void ChangeMethod()
+    {
+        if(decryptionOptions[0].Equals("Frequency Analysis")) 
+        {
+            decryptionOptions[0] = "Language Processing";
+            decryptionOptions[1] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium augue nisi, sit amet lacinia mi laoreet ut. Fusce volutpat hendrerit diam consectetur dignissim";
+            decryptionOptions[2] = "X-X";
+            decryptionOptions[3] = "Around XXX letters";
+        }
+        else         
+        {
+            decryptionOptions[0] = "Frequency Analysis";
+            decryptionOptions[1] = "This algorithm uses a series of statistical methods to determine which configuration is closest to typical English text.";
+            decryptionOptions[2] = "5-6";
+            decryptionOptions[3] = "At least 600 letters";
+        }
+    }
+    private void HandleDecrypt()
+    {
+        var watch = System.Diagnostics.Stopwatch.StartNew();
+        working = "";
+        plainText = Decrypt(cipherText);
+        working = "";
+        watch.Stop();
+        System.Console.WriteLine(watch.ElapsedMilliseconds);
+    }
+}

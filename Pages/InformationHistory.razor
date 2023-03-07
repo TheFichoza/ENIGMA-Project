@@ -1,0 +1,46 @@
+@page "/History"
+@layout EmptyLayout
+
+<div class="page-bg pt-3 pb-3 ps-4 pe-4">
+    <h1 class="mb-4 mt-3">History of the ENIGMA</h1>
+    <h2 class="mb-2">The Enginner</h2>
+    <div class="mb-4 overflow-auto">
+        <p class="float-start col-10 fs-4">
+        The first ENIGMA prototype aka. a rotor-based mechanical enryption deivce was patented in February 1918 by German engineer Arthur Scherbius.
+        The name came from the Greek word for "riddle".At first the machine was mainly used for commercial purposes,
+        with the armed forces even refusing an offer to adopt the invention. However, as WW-2 approached,
+        the incredible security provided by the cipher became simply invaluable. 
+        Eventually ENIGMA would come to be used by every branch of the Wehrmacht. The “unbreakable cipher” had been born.
+        </p>
+       <img src="Sources/Images/Scherbius.jpg" class="float-end col-2 border border-light border-2"/>
+    </div>
+    <h2 class="mb-2">The Mathematician</h2>
+    <div class="mb-4 overflow-auto">
+        <p class="float-end col-10 fs-4 ps-3">
+            In 1932 Polish mathematician Marian Rejewski, originally a professor at the university of Poznan, 
+            was tasked with finding a way to break the cipher. 
+            At the time the exact structue of the machine and its components was largely unknown 
+            However, by pioneering the use of mathematics and group theory in cryptology, 
+            Rejewski was able to map out the individual components and even break early versions of the cipher. 
+            While his success did not last, his methods would be streamlined adn improved by Alan Turing, 
+            leading to the final cracking of ENIGMA and the birth of computer science.
+        </p>
+        <img src="Sources/Images/Rejewski.jpg" class="float-start col-2 border border-dark border-2"/>
+    </div>
+    <h2 class="mb-2">The Computer Scientist</h2>
+    <div class="mb-4 overflow-auto">
+    <p class="float-start col-10 fs-4">
+        While the Polish had had a lot of success in cracking the code, 
+        they had only done so by exploiting faulty German communications. 
+        Only with Turing was ENIGMA’s invulnerability fully dismantled. 
+        His team at Bletchley Park developed the bombe machine. Modeled after the Polish bomba, 
+        this device would analyze “cribs” i.e. guessed plaintext in the cipher and discard all 
+        configurations that couldnt produce the specified crib. Unlike the Polish method, 
+        this technique exploited a fundamental flaw in the ENIGMA’s design - 
+        that letters could never be encrypted as themselves. The creation of the bombe 
+        as well as Turing’s post-war projects were the prototype for modern computers. 
+        As such he would eventually come to be heralded as the Father of Computer Science.
+    </p>
+    <img src="Sources/Images/Turing.jpg" class="float-end col-2 border border-dark border-2"/>
+    </div>
+</div>
