@@ -25,7 +25,7 @@
         }
         public Key()
         {
-            ioc = 1;
+            ioc = -1;
             text = "";
         }
         public double IoC(int[] histogram)
