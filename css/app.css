@@ -176,7 +176,7 @@ a, .btn-link {
 }
 .abs{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: absolute;
     left: 0;
     display: flex;
