@@ -273,3 +273,11 @@ a, .btn-link {
 .p-space{
     margin-top: 10vh;
 }
+.nav-size
+{
+    font-size: 1.6vw;
+}
+.nav-title-size
+{
+    font-size: 3vw;
+}
