@@ -3,7 +3,6 @@ namespace PublishDemo
 {
  internal class Plugboard
     {
-        private const int limit = 3;
         HashSet<int> usedChars;
         Dictionary<int, int> maps;
         public Plugboard()
@@ -27,15 +26,12 @@ namespace PublishDemo
             {
                 int symbol1 = conn[0] - 65,
                 symbol2 = conn[2] - 65;
-                if (maps.Count < limit)
+                if (!(usedChars.Contains(symbol1) || usedChars.Contains(symbol2)))
                 {
-                    if (!(usedChars.Contains(symbol1) || usedChars.Contains(symbol2)))
-                    {
-                        usedChars.Add(symbol1);
-                        usedChars.Add(symbol2);
-                        maps[symbol1] = symbol2;
-                        return true;
-                    }
+                    usedChars.Add(symbol1);
+                    usedChars.Add(symbol2);
+                    maps[symbol1] = symbol2;
+                    return true;
                 }
             }
             return false;

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-4 align-items-center d-flex flex-column">
                     <label class="text-white fw-bold fs-4">Original Text:</label><br/>
-                    <textarea @bind="original" class="form-control fs-6 fw-bold" style="width: 85%; height: 85%; background-color: rgb(217, 217, 217); resize: none;"></textarea>
+                    <textarea @bind="original" class="form-control fs-6 fw-bold textbox"></textarea>
                 </div>
                 <div class="col-4 align-items-center d-flex flex-column justify-content-center">
                     <p class="text-white fw-bold fs-4">Rotor Settings:</p><br/>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-4 align-items-center d-flex flex-column">
                     <label class="text-white fw-bold fs-4">Encrypted Text:</label><br/>
-                    <textarea readonly class="form-control fs-6 fw-bold" style="width: 85%; height: 85%; background-color: rgb(217, 217, 217); resize: none;">@encrypted</textarea>
+                    <textarea readonly class="form-control fs-6 fw-bold textbox">@encrypted</textarea>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
             plugs.Add($"{temp[0]}-{temp[1]}");
             temp="";
         }
-        if(count==6)
+        if(count==10)
         {
             for (int i = 0; i < classes.Length; i++)
             {
