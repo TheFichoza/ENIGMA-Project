@@ -1,6 +1,7 @@
 @page "/Decryption"
 @layout EncDecLayout
 @inherits DecryptionBase
+@inject HttpClient httpClient
 
 <PageTitle>Decryption</PageTitle>
 <div class="abs">
@@ -28,7 +29,7 @@
 
     private string cipherText, plainText, working;
     private string[] decryptionOptions;
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         cipherText = "";
         plainText = "";
@@ -55,11 +56,13 @@
             decryptionOptions[3] = "At least 600 letters";
         }
     }
-    private void HandleDecrypt()
+    private async Task HandleDecrypt()
     {
+        string fileLine = await httpClient.GetStringAsync("Sources/quadgrams.txt");
         var watch = System.Diagnostics.Stopwatch.StartNew();
-        working = "";
-        plainText = Decrypt(cipherText);
+        working = "pe-none";
+        SetFileLines(fileLine);
+        plainText = await Task.Run(() => Decrypt(cipherText));
         working = "";
         watch.Stop();
         System.Console.WriteLine(watch.ElapsedMilliseconds);

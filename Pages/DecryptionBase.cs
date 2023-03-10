@@ -4,6 +4,7 @@ namespace PublishDemo.Pages
 {
     public class DecryptionBase : ComponentBase
     {
+        
         public static int[,] vars = { { 1, 2, 3 }, { 1, 2, 4 }, { 1, 2, 5 }, { 1, 3, 2 }, { 1, 3, 4 },
         { 1, 3, 5 }, { 1, 4, 2 }, { 1, 4, 3 }, { 1, 4, 5 }, { 1, 5, 2 }, { 1, 5, 3 }, { 1, 5, 4 },
         { 2, 1, 3 }, { 2, 1, 4 }, { 2, 1, 5 }, { 2, 3, 1 }, { 2, 3, 4 }, { 2, 3, 5 }, { 2, 4, 1 },
@@ -13,11 +14,16 @@ namespace PublishDemo.Pages
         { 4, 2, 3 }, { 4, 2, 5 }, { 4, 3, 1 }, { 4, 3, 2 }, { 4, 3, 5 }, { 4, 5, 1 }, { 4, 5, 2 },
         { 4, 5, 3 }, { 5, 1, 2 }, { 5, 1, 3 }, { 5, 1, 4 }, { 5, 2, 1 }, { 5, 2, 3 }, { 5, 2, 4 },
         { 5, 3, 1 }, { 5, 3, 2 }, { 5, 3, 4 }, { 5, 4, 1 }, { 5, 4, 2 }, { 5, 4, 3 } };
-
         Dictionary<string, decimal> quad;
+        private string[] fileLines;
         Key min;
         decimal hillClimb;
         string format;
+        public void SetFileLines(string fileLine)
+        {
+            fileLines = fileLine.Split('\n');
+            System.Console.WriteLine(fileLines.Length);
+        }
         public string Decrypt(string cipherText)
         {
             format = "";
@@ -64,8 +70,7 @@ namespace PublishDemo.Pages
             {
                 min.text += enigma.Encrypt(item);
             }
-            //DiscoverPlugs();
-            return $"BEST - {min.ioc}:\n{min}";
+            return $"BEST - {DiscoverPlugs()}";
         }
 
 
@@ -73,16 +78,6 @@ namespace PublishDemo.Pages
         {
             Enigma enigma;
             quad = new Dictionary<string, decimal>();
-            string[] fileLines;
-            try
-            {
-                fileLines = System.IO.File.ReadLines("quadgrams.txt").ToArray();
-            }
-            catch
-            {
-                Console.WriteLine("FIle not found");
-                return "";
-            }
             foreach (string line in fileLines)
             {
                 string[] a = line.Split(' ');
