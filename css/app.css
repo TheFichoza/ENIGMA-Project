@@ -162,13 +162,13 @@ a, .btn-link {
     background-color: cyan !important;
 }
 .plug-conn-2{
-    background-color: yellow !important;
+    background-color: rgb(255, 208, 0) !important;
 }
 .plug-conn-3{
     background-color: green !important;
 }
 .plug-conn-4{
-    background-color: pink !important;
+    background-color: rgb(174, 0, 255) !important;
 }
 .plug-disable{
     pointer-events: none;
@@ -211,7 +211,6 @@ a, .btn-link {
 }
 .dropdown-body{
     display: none;
-    padding: 0 0 5% 0;
     background-color: #797878;
     position: absolute;
     margin-top: -5px;
@@ -280,4 +279,12 @@ a, .btn-link {
 .nav-title-size
 {
     font-size: 3vw;
+}
+
+.textbox
+{
+    width: 85%;
+    height: 85%;
+    background-color: rgb(217, 217, 217);
+    resize: none;
 }
