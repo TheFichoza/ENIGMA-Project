@@ -38,6 +38,8 @@
             "5-6", "At least 600 letters" };
         AppState.PageLink = "Encryption";
         AppState.ButtonState = "ENIGMA device";
+        string fileLine = await httpClient.GetStringAsync("Sources/quadgrams.txt");
+        SetFileLines(fileLine);
     }
     private void ChangeMethod()
     {
@@ -58,10 +60,8 @@
     }
     private async Task HandleDecrypt()
     {
-        string fileLine = await httpClient.GetStringAsync("Sources/quadgrams.txt");
         var watch = System.Diagnostics.Stopwatch.StartNew();
         working = "pe-none";
-        SetFileLines(fileLine);
         plainText = await Task.Run(() => Decrypt(cipherText));
         working = "";
         watch.Stop();
