@@ -1,4 +1,4 @@
-namespace PublishDemo
+namespace ENIGMA_Project
 {
     static internal class RotorSelection
     {

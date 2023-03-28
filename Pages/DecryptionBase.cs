@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace PublishDemo.Pages
+namespace ENIGMA_Project.Pages
 {
     public class DecryptionBase : ComponentBase
     {
