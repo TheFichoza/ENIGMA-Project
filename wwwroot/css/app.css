@@ -7,7 +7,9 @@ html, body {
 body {
     background-color: #282828 !important;
 }
-
+img{
+    max-width: 100%;
+}
 h1:focus {
     outline: none;
 }
@@ -101,7 +103,7 @@ a, .btn-link {
     background-color: #2b9d03;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    width: 120px;
+    width: 8.5vw;
     height: inherit;
     border-radius: 30px
 }

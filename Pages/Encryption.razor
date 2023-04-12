@@ -16,13 +16,15 @@
                         <RotorElement @bind-Index="rotor_positions[2]" Position="2"></RotorElement>
                     </div>
                 </div>
+
+
                 <div class="col-4 align-items-center d-flex flex-column">
                     <label class="text-white fw-bold fs-4">Encrypted Text:</label><br/>
                     <textarea readonly class="form-control fs-6 fw-bold textbox">@encrypted</textarea>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row primary">
                 <div class="col-8 d-flex flex-column justify-content-center">
                     <h1 class="text-white fw-bold fs-4 mt-5">Plugboard settings:</h1>
                     <div class="row d-flex justify-content-between mt-4">
@@ -66,6 +68,36 @@
                     <button @onclick="Execute" class="btn btn-encrypt p-0 d-flex justify-content-center align-items-center fs-1" style="width: 90%; height: 40%">Encrypt</button>
                 </div>
             </div>
+            <div class="col-6 secondary" style="display: none">
+                <p class="text-center">Plugboard settings</p>
+                <div class="row">
+                    <div>
+                        <p class="fs-4">Enter two letters: 
+                            <select>
+                                @for (int i = 0; i < 26; i++)
+                                {
+                                    string symbol = $"{((char)(i + 'A'))}";
+                                    <option>@symbol</option>
+                                }
+                            </select>
+                            -
+                            <select>
+                                @for (int i = 0; i < 26; i++)
+                                {
+                                    string symbol = $"{((char)(i + 'A'))}";
+                                    <option>@symbol</option>
+                                }
+                            </select>
+                        </p>
+                        <p class="fs-4 mb-3">Number of plug pairs: <a class="fs-4 p-2 p-container text-decoration-none" style="@checker">@(count/2)</a></p>
+                        <p>Used letters:</p>
+                        <textarea></textarea>
+                        <button class="btn btn-encrypt">Enter plug</button>
+                        <button @onclick="ClearSettings" class="btn btn-encrypt">Clear plugs</button>
+                    </div>
+                    <textarea readonly class="col-4 textbox"></textarea>
+                </div>
+            </div>
     </div>
 
 @code {
@@ -75,7 +107,7 @@
     private int[] rotor_positions;
     private List<string> plugs;
     private string[] classes;
-    private string temp, checker;
+    private string temp, checker, symbol="A";
     private int count;
     private void Connect(char symbol)
     {
@@ -113,6 +145,7 @@
         }
         AppState.PageLink = "Decryption";
         AppState.ButtonState = "Decryption algorithm";
+        symbol="A";
     }
     private void ClearSettings()
     {

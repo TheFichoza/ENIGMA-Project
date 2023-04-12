@@ -7,7 +7,9 @@
 main {
     flex: 1;
 }
-
+a{
+    font-size: 1.5rem;
+}
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
@@ -77,5 +79,43 @@ main {
     .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .collapse > a{
+        font-size: 1.25rem;
+    }
+    @media screen and (max-width: 1030px){
+        .collapse > a{
+            font-size: 1rem;
+        }
+        @media screen and (max-width: 870px){
+            .collapse > a{
+                font-size: 0.80rem;
+            }
+            @media screen and (max-width: 750px){
+                .logo{
+                    display: none;
+                }
+                .collapse{
+                    width: 100% !important;
+                }
+                .collapse > a{
+                    font-size: 1.25rem;
+                    padding: 0 10px !important;
+                }
+                @media screen and (max-width: 675px){
+                    .collapse > a{
+                        font-size: 1rem;
+                    }
+                    @media screen and (max-width: 570px){
+                        .collapse > a{
+                            font-size: 0.80rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
